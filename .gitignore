@@ -2,6 +2,7 @@
 generated/
 bios-generated/
 build/
+build-release/
 *.exe
 *.dll
 *.obj

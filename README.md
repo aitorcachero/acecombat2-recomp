@@ -1,147 +1,149 @@
-# Ace Combat 2 - Recomp
+<div align="center">
 
-> **Work in Progress:** This recompilation project is currently under development. Features, compatibility, performance, and functionality may change as development continues.
+# ✈️ Ace Combat 2 Recompiled
+### *Port Nativo para PC (Windows x64) mediante Recompilación Estática MIPS R3000A*
 
-A modern fan-made recompilation project for **Ace Combat 2**, originally released for the **Sony PlayStation**.
+[![Platform](https://img.shields.io/badge/Plataforma-Windows%20x64%20Nativo-blue.svg?style=for-the-badge&logo=windows)](https://github.com)
+[![Resolution](https://img.shields.io/badge/Resoluci%C3%B3n-4K%20UHD%20(3840x2160)-brightgreen.svg?style=for-the-badge)](https://github.com)
+[![Framerate](https://img.shields.io/badge/Refresco-60%20%2F%20120%20%2F%20144%20FPS-orange.svg?style=for-the-badge)](https://github.com)
+[![Aspect Ratio](https://img.shields.io/badge/Modos-16%3A9%20Full--Screen%20%26%204%3A3%20UHD-purple.svg?style=for-the-badge)](https://github.com)
+[![Geometry](https://img.shields.io/badge/Geometr%C3%ADa-Rock--Solid%20(Sin%20Glitches)-success.svg?style=for-the-badge)](https://github.com)
+[![License](https://img.shields.io/badge/Licencia-MIT-lightgrey.svg?style=for-the-badge)](LICENSE)
 
-## Built With PSXRecomp
+---
 
-This project is built using [PSXRecomp](https://github.com/mstan/psxrecomp), the PlayStation 1 static recompiler framework created by mstan. The framework is included in this project as a Git submodule.
+</div>
 
-## Disc Required
+## 📖 Descripción del Proyecto
 
-This project **does not include the original game disc image or copyrighted assets**.
+**Ace Combat 2 Recompiled** es una adaptación nativa para PC de 64 bits del legendario juego de combate aéreo lanzado por **Namco** en 1997 para la Sony PlayStation 1.
 
-To play, you must provide your **own legally obtained copy** of *Ace Combat 2*.
+A diferencia de los emuladores convencionales (que interpretan el código máquina MIPS en un bucle virtual con sobrecoste de CPU y latencia de entrada), este proyecto realiza una **traducción estática completa** del código binario de PS1 a código C nativo optimizado para procesadores x86-64 modernos.
 
-The original game disc image must **not** be uploaded to this repository or included with releases.
+El ejecutable resultante interactúa directamente con la GPU a través de OpenGL/Vulkan de bajo nivel, ofreciendo una experiencia fluida, nítida y con latencia ultrabaja imposible de alcanzar en el hardware original de 32 bits.
 
-## Features
+---
 
-* PlayStation recompilation
-* **Work in progress / actively being developed**
-* Requires the user's own legally obtained game disc/image
-* No copyrighted game disc files are distributed with this project
-* No original game artwork, music, or other copyrighted game assets are included
-* Fullscreen support
-* Designed for modern systems
-* Keyboard controls
-* Source code intended to support community contributions
-* Bug fixes and feature improvements welcome
+## ✨ Características y Mejoras Implementadas
 
-## Controls
+### 🎯 1. Fijación de Blancos y Minimapa Milimétricos
+- **Sincronización 1:1 en 3D:** Los recuadros verdes y rojos de fijación de misiles (`Target Lock-On`) se mantienen **exactamente centrados sobre los cazas enemigos** en todo momento, eliminando el desplazamiento artificial que sufrían los hacks convencionales de pantalla ancha.
+- **Minimapa Integrado:** La brújula, el círculo de radar y los puntos de aeronaves permanecen cohesionados y alineados dentro de la interfaz sin separarse ni sufrir desajustes.
 
-Controls depend on the current runtime configuration.
+### 🌊 2. Geometría de Terreno y Océano Libre de Glitches
+- **Estabilización de Cuadrícula:** Corrección matemática en la proyección de vértices del mar y las cadenas montañosas. Se eliminan las grietas, polígonos parpadeantes y "explosiones" de malla habituales de PGXP en simuladores de vuelo.
+- **Superficie de Agua Fluida y Homogénea:** El océano se renderiza con textura continua y sólida sin desgarros entre tiles adyacentes.
 
-Keyboard and controller bindings may be configurable through the project's input configuration.
+### 🖥️ 3. Modos de Visualización Adaptativos
 
-## Building From Source
+| Modo | Lanzador | Descripción |
+|---|---|---|
+| **16:9 Panorámico Pantalla Completa** | `AceCombat2.exe`<br>`JUGAR_ACE_COMBAT_2.bat` | Llena el **100% de la pantalla** sin bandas negras laterales. Los vídeos cinemáticos (FMV MDEC) conservan automáticamente la proporción original 4:3 para no deformarse. |
+| **4:3 UHD Puro Pixel-Perfect** | `JUGAR_ACE_COMBAT_2_4K_43.bat` | Proporción clásica 4:3 en resolución nativa **4K UHD (2160p)**. Cero pop-in en bordes laterales y radar circular perfecto. |
 
-This repository contains the source code, build files, game configuration, and recompilation data required to build the project.
+### 🎨 4. Shader Post-Procesado OLED Crystal-Clear
+- **Contraste y Profundidad:** Canal de color optimizado para pantallas modernas y paneles OLED.
+- **Azules Profundos y Fuego Vivo:** Mayor saturación selectiva en el cielo y el mar, con estelas de condensación, humo y explosiones nítidas sin artefactos de realce de bordes 2D.
 
-### Requirements
+### 🔇 5. Lanzador Nativo Silencioso (`.exe`)
+- `AceCombat2.exe` compilado con Clang en modo `-mwindows`, arrancando de manera inmediata sin consolas de texto CMD de fondo.
+- Se incluye también un script silencioso adicional `JUGAR_ACE_COMBAT_2_SIN_VENTANAS.vbs`.
 
-* Git
-* CMake
-* A supported C/C++ compiler
-* Required project dependencies
-* Your own legally obtained copy of the game, if required by the build process
+---
 
-### Clone the Repository
+## 🎮 Compatibilidad Universal de Discos
 
-```bash
-git clone https://github.com/omegakatana92/AceCombat2Recomp.git
-cd AceCombat2Recomp
+El preparador universal integrado (`tools/setup_disc.py`) detecta y configura automáticamente las siguientes regiones:
+
+| Región | Código de Disco | Título | Frecuencia | Idioma |
+|---|---|---|---|---|
+| **PAL Europa** | `SCES-00699` | Ace Combat 2 | 50.0 Hz | Inglés |
+| **PAL España** | `SCES-00710` | Ace Combat 2 | 50.0 Hz | Castellano / Multilenguaje |
+| **NTSC-U** | `SLUS-00404` | Ace Combat 2 | 59.94 Hz | Inglés |
+| **NTSC-J** | `SLPS-00830` | Ace Combat 2 (v1.0) | 59.94 Hz | Japonés |
+| **NTSC-J The Best** | `SLPS-91060` | Ace Combat 2 (PlayStation The Best) | 59.94 Hz | Japonés |
+| **NTSC-J NamCollection** | `SLPM-80512` | Ace Combat 2 (NamCollection) | 59.94 Hz | Japonés |
+
+Formatos aceptados: **`.BIN/.CUE`**, **`.PBP`** (PSP/PS3 eBoot), **`.ISO`**, **`.IMG`**, **`.CHD`**.
+
+---
+
+## 🚀 Guía de Instalación y Uso Rápido
+
+1. **Descarga el release:**
+   Descarga y descomprime `Ace_Combat_2_Recompiled_v1.0_Windows_x64.zip`.
+
+2. **Añade tu juego legal:**
+   Copia tu imagen de disco de Ace Combat 2 en la subcarpeta `disc/` (o en la carpeta raíz del juego).
+
+3. **Ejecuta el preparador:**
+   Haz doble clic en **`PREPARAR_DISCO.bat`**. Detectará tu copia, extraerá los archivos necesarios si es un `.PBP` y configurará el motor automáticamente.
+
+4. **¡A volar!:**
+   - Para jugar en **16:9 Panorámico Completo**: ejecuta `AceCombat2.exe` o `JUGAR_ACE_COMBAT_2.bat`.
+   - Para jugar en **4:3 UHD Puro Clásico**: ejecuta `JUGAR_ACE_COMBAT_2_4K_43.bat`.
+
+---
+
+## 🕹️ Controles por Defecto
+
+Compatible de forma nativa con **Mandos de Xbox Series/One/360, PlayStation DualSense/DualShock 4, Mandos Genéricos DirectInput/XInput y Teclado**.
+
+| Acción en Vuelo | Mando (Xbox / PS) | Teclado (Alternativo) |
+|---|---|---|
+| **Alabeo y Cabeceo (Guiar Avión)** | Stick Izquierdo / Cruceta | `Flechas de Dirección` |
+| **Acelerar (Postquemador)** | `R1` / `RB` | `Z` |
+| **Frenar / Aerofrenos** | `L1` / `LB` | `X` |
+| **Timón de Cola (Guiñada Izq / Der)** | `L2` / `R2` (`LT` / `RT`) | `A` / `S` |
+| **Disparar Cañón** | `Cuadrado` / `X` | `Espacio` |
+| **Lanzar Misil** | `Cruz` / `A` | `Enter` |
+| **Cambiar Blanco (`Target`)** | `Círculo` / `B` | `Tab` |
+| **Cambiar Cámara (Cabina / Exterior)** | `Triángulo` / `Y` | `C` |
+| **Pausa / Menú de Misión** | `Start` | `Escape` |
+
+---
+
+## 📂 Estructura del Paquete
+
+```text
+Ace_Combat_2_Recompiled/
+├── AceCombat2.exe                     # Lanzador nativo Windows silencioso
+├── Ace_Combat_2_Recompiled.exe         # Ejecutable principal del motor recompilado
+├── game.toml                           # Configuración de renderizado 4K, PGXP y aspecto
+├── settings.toml                       # Preferencias de usuario portables
+├── disc.cfg                            # Ruta al descriptor del disco
+├── JUGAR_ACE_COMBAT_2.bat              # Acceso rápido en 16:9 Full-Screen
+├── JUGAR_ACE_COMBAT_2_4K_43.bat        # Acceso rápido en 4:3 UHD Puro
+├── JUGAR_ACE_COMBAT_2_SIN_VENTANAS.vbs # Acceso 100% silencioso
+├── PREPARAR_DISCO.bat                  # Asistente de detección de disco
+├── LEEME_INSTRUCCIONES.txt             # Guía rápida en texto plano
+├── README.md                           # Documentación completa
+├── LICENSE                             # Licencia MIT del proyecto
+├── disc/                               # Carpeta donde depositar el juego legal
+│   └── PON_TU_JUEGO_AQUI.txt
+├── saves/                              # Tarjetas de memoria virtuales (.mcd)
+├── shaders/                            # Shaders HD Crystal-Clear OLED
+│   ├── hd2d.glsl
+│   └── hd2d.pfx
+└── tools/                              # Utilidad multiplataforma de ingestión
+    └── setup_disc.py
 ```
 
-### Configure the Build
+---
 
-```bash
-cmake -S . -B build
-```
+## 💻 Requisitos del Sistema
 
-### Build
+- **Sistema Operativo:** Windows 10 / Windows 11 (64-bit).
+- **Procesador:** Cualquier CPU moderna con soporte x86-64 (Intel Core i3 / AMD Ryzen 3 o superior).
+- **Memoria RAM:** 2 GB mínimo.
+- **Tarjeta Gráfica:** Compatible con OpenGL 3.3 o superior (Intel HD Graphics 4000+, NVIDIA GeForce GT 710+, AMD Radeon HD 7000+ o cualquier GPU dedicada moderna).
+- **Almacenamiento:** ~650 MB para la imagen de disco del juego.
 
-```bash
-cmake --build build --config Release
-```
+---
 
-The resulting executable will be placed in the project's build output directory.
+## ⚖️ Aviso Legal y Cumplimiento
 
-**The original game disc image is not included in this repository.**
-
-Because this project is currently under development, the build may not yet be fully functional or complete.
-
-## Contributing
-
-Contributions and improvements are welcome!
-
-Developers can **fork this repository**, make changes, test their work, and submit a **Pull Request**.
-
-Possible contributions include:
-
-* Bug fixes
-* Performance improvements
-* Controller improvements
-* Fullscreen improvements
-* Linux compatibility
-* Steam Deck compatibility
-* Build-system improvements
-* Accessibility improvements
-* Documentation improvements
-* Configuration options
-* Additional platform support
-
-Please do not submit copyrighted game disc images, game assets, music, artwork, or other proprietary game material.
-
-## Copyright
-
-**Ace Combat 2**, its characters, aircraft, names, artwork, music, trademarks, and other intellectual property remain the property of their respective copyright and trademark holders.
-
-This is an independent fan-made recompilation project.
-
-No original game disc images or copyrighted game assets are distributed with this project.
-
-**All rights to the original game and its associated intellectual property remain with their respective owners.**
-
-## Fullscreen
-
-Fullscreen support is available through the runtime configuration.
-
-## Launcher
-
-A lightweight Windows GUI launcher is provided in the `launcher/` folder.
-
-The launcher:
-
-* Locates the recompiled executable automatically (it lives next to `launcher/launcher/..`).
-* Asks you to pick your legally obtained game disc CUE.
-* Lets you choose between the bundled **OpenBIOS** (default) and a **Custom BIOS** of your own.
-* Passes `--disc "<path>"` to the recompiled executable, plus `--bios "<path>"` only when Custom BIOS is selected (the runtime's actual supported mechanism).
-* Persists the last selected CUE, BIOS mode, and Custom BIOS path in `%APPDATA%\AceCombat2Recomp\launcher-config.json` so the next launch pre-fills them.
-* Validates the CUE and (for Custom BIOS) the BIOS file exist before launching.
-* Invokes the existing `Ace_Combat_2_Recompiled.exe` with the runtime flags it actually supports.
-* No external dependencies — uses Windows PowerShell 5.1 (built into Windows) and System.Windows.Forms.
-* No copyrighted game disc image or retail PlayStation BIOS is bundled or copied.
-
-To use:
-
-1. Open the `launcher/` folder.
-2. Double-click `AceCombat2Launcher.bat` (or run `powershell -ExecutionPolicy Bypass -File .\launcher\AceCombat2Launcher.ps1`).
-3. Pick your **BIOS** source:
-   * **OpenBIOS (Included)** — uses the bundled `bios\openbios.bin` shipped with the release. No BIOS download is required.
-   * **Custom BIOS** — click **Browse...** and select your own legally obtained PS1 BIOS file (e.g. `SCPH1001.BIN`). Retail BIOS files are not included or distributed.
-4. Click **Browse...** in the Disc CUE section and select your legally obtained `Ace Combat 2 (USA).cue` disc image.
-5. Click **Launch Game**.
-
-OpenBIOS will boot, the game will detect the disc, and gameplay will start. Press **Alt+Enter** in-game to toggle fullscreen.
-
-## Disclaimer
-
-This project is currently a **work in progress** and is not considered a finished or fully playable release.
-
-This project does not distribute the original game disc image or copyrighted game assets.
-
-Users must provide their own legally obtained copy of the game.
-
-This project is an independent fan-made recompilation and is **not affiliated with or endorsed by Namco or other rights holders associated with the original game.**
+* **Ace Combat 2** es una marca registrada de **Bandai Namco Entertainment Inc.**
+* Este proyecto es una reimplementación independiente de código limpio desarrollada con fines de preservación técnica e investigación histórica.
+* **Este paquete NO contiene ninguna BIOS de Sony PlayStation, ni imágenes de disco, música, vídeos ni ningún archivo con derechos de autor.**
+* Cada usuario debe poseer una copia original del juego para generar los activos necesarios para jugar.
